@@ -3,18 +3,17 @@ from PySide6.QtWidgets import QButtonGroup, QFrame, QPushButton, QVBoxLayout
 
 NAV_ITEMS = [
     ("dashboard", "DASHBOARD"),
-    ("mtk", "MEDIA TEK\nBootROM · Preloader · Flash"),
-    ("unisoc", "UNISOC / SPD\nBSL · FDL · PAC · Flash"),
-    ("qualcomm", "QUALCOMM\nEDL · Diagnostics"),
-    ("android", "ANDROID\nADB · Fastboot · Logs"),
+    ("mtk", "MTK / MEDIA TEK\nDetect · BROM · Flash"),
+    ("unisoc", "SPD / UNISOC\nDetect · BSL · FDL · PAC"),
+    ("qualcomm", "QUALCOMM\nDetect · EDL · Diagnostics"),
+    ("android", "ANDROID\nDetect · ADB · Fastboot"),
+    ("diagnostics", "GLOBAL DETECTION\nUSB · COM · ADB · Fastboot"),
     ("frp", "FRP\nStatus · Security · Recovery"),
-    ("diagnostics", "DIAGNOSTICS"),
     ("backup", "BACKUP"),
     ("tools", "TOOLS"),
     ("settings", "SETTINGS"),
     ("about", "ABOUT"),
 ]
-
 
 class Sidebar(QFrame):
     def __init__(self, on_change) -> None:
