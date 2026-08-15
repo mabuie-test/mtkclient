@@ -8,6 +8,7 @@ hardware real.
 """
 import sys
 import struct
+import pytest
 sys.path.insert(0, ".")
 
 from spd_protocol import SpdIO, BSL, FLAGS_TRANSCODE, FLAGS_CRC16, spd_crc16, spd_checksum, spd_transcode
@@ -43,6 +44,7 @@ class FakeIO(SpdIO):
         return len(chunk) > 0
 
 
+@pytest.mark.parametrize("flags,label", [(FLAGS_TRANSCODE, "transcode"), (FLAGS_CRC16, "crc16")])
 def test_roundtrip(flags, label):
     io = FakeIO(b"")
     io.flags = flags

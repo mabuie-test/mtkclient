@@ -1,4 +1,4 @@
-# Patch: leitura do JEDEC ID (extensão MabuieTool_SPD)
+# Patch: leitura do JEDEC ID (extensão MabuiETool SPD)
 
 Esta pasta é uma cópia do `custom_fdl` original do projeto
 `spreadtrum_flash`, com **uma única adição**: um novo comando
@@ -9,7 +9,7 @@ da flash SPI-NOR (fabricante + tipo + capacidade), lido via
 dentro do firmware.
 
 **Isto NÃO é o protocolo oficial da Spreadtrum/Unisoc** - é uma extensão
-específica desta ferramenta (MabuieTool_SPD). Um `nor_fdl1.bin` sem este
+específica desta ferramenta (MabuiETool SPD). Um `nor_fdl1.bin` sem este
 patch simplesmente vai responder "comando desconhecido" a esse comando -
 sem problema nenhum, a ferramenta já trata esse caso e mostra uma
 mensagem explicando que o FDL1 carregado não suporta a leitura do JEDEC
@@ -53,7 +53,7 @@ Nenhum outro arquivo foi tocado.
    (SC6530/SC6531DA/SC6531E), exatamente como o `nor_fdl1.bin` que você
    já está usando hoje.
 5. O resultado é `nor_fdl1.bin` nesta mesma pasta. Copie esse arquivo
-   para a pasta `fdl_files/` do MabuieTool_SPD (pode substituir o antigo
+   para a pasta `fdl_files/` do MabuiETool SPD (pode substituir o antigo
    ou usar um nome diferente, ex.: `nor_fdl1_jedec.bin`) e selecione-o
    na interface como de costume - endereço de carga continua
    `0x40004000`.

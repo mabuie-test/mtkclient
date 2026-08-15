@@ -3,7 +3,7 @@
 Esta pasta é uma cópia do código-fonte original do projeto
 `mediatek_flash` (mesmo autor do `spreadtrum_flash`), incluída aqui só
 para referência e para compilar o **payload/DA** usado pela aba
-"MediaTek (MTK)" do MabuieTool_SPD.
+"MediaTek (MTK)" do MabuiETool SPD.
 
 ## O que é o payload/DA
 
@@ -29,7 +29,7 @@ Precisa do Android NDK (traz um compilador ARM funcional):
 ## mtk_dump.c (ferramenta original em C)
 
 Não precisa compilar isso - o `mtk_protocol.py` na raiz do
-MabuieTool_SPD já é uma reimplementação completa em Python do que esse
+MabuiETool SPD já é uma reimplementação completa em Python do que esse
 `mtk_dump.c` faz (handshake BROM, envio de DA, comandos SFI de flash).
 Mantido aqui só para referência/comparação, caso precise conferir algum
 detalhe do protocolo original.

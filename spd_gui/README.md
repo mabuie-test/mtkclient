@@ -1,4 +1,4 @@
-# MabuieTool_SPD
+# MabuiETool SPD
 
 Interface gráfica em Python/PySide6 para fazer **dump (backup) de firmware**
 de feature phones com chipset **Spreadtrum/Unisoc** (SC6530, SC6531DA,
@@ -370,10 +370,10 @@ falhar com "resposta inesperada" - isso é esperado, não é bug.
 
 ```
 pip install pyinstaller
-pyinstaller --noconsole --onefile --name MabuieTool_SPD main.py
+pyinstaller --noconsole --onefile --name MabuiETool SPD main.py
 ```
 
-O executável ficará em `dist/MabuieTool_SPD.exe`. Copie a pasta `fdl_files/`
+O executável ficará em `dist/MabuiETool SPD.exe`. Copie a pasta `fdl_files/`
 para perto do `.exe` se quiser distribuí-la junto.
 
 ## Estrutura do projeto

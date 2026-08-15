@@ -28,8 +28,8 @@ import spd_pac
 import mtk_protocol as mtk
 
 
-APP_ORG = "MabuieTool"
-APP_NAME = "MabuieTool_SPD"
+APP_ORG = "MabuiETool"
+APP_NAME = "MabuiETool SPD"
 
 
 # --------------------------------------------------------------------------
@@ -1011,7 +1011,7 @@ class MtkWorker(QThread):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle(APP_NAME + " - dump, gravação e utilitários para feature phones Spreadtrum/Unisoc")
+        self.setWindowTitle(APP_NAME + " - integrado ao MabuiETool")
         self.setMinimumSize(560, 400)
         self.settings = QSettings(APP_ORG, APP_NAME)
         self.worker = None
@@ -1058,7 +1058,7 @@ class MainWindow(QMainWindow):
         root.setSpacing(6)
 
         header = QHBoxLayout()
-        title = QLabel("MabuieTool_SPD")
+        title = QLabel("MabuiETool SPD")
         title.setObjectName("brandTitle")
         header.addWidget(title)
         self.status_label = QLabel("Dispositivo: aguardando ação do usuário")

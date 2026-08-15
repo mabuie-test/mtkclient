@@ -1,5 +1,22 @@
 ## Usage
 
+## MabuiETool GUI
+
+MabuiETool provides the professional graphical workspace for the bundled service tools:
+
+```bash
+python -m mabuietool
+```
+
+Installed entry points are also available after `python -m pip install -e .`:
+
+```bash
+mabuietool
+mabuietool-gui
+```
+
+Use the sidebar to access Dashboard, MediaTek, Unisoc / SPD, Qualcomm, Android, FRP diagnostics, Backup, Tools, Settings and About. The Unisoc / SPD page contains the integrated Full SPD Tool tab, so SPD no longer needs to open as a separate application.
+
 ### Using MTKTools via the graphical user interface:
 For the 'basics' you can use the GUI interface. This supports dumping partitions or the full flash for now. Run the following command:
 ```shell

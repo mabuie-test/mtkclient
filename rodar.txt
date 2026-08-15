@@ -1,0 +1,96 @@
+MabuiETool - Como rodar
+========================
+
+Nome da aplicação:
+MabuiETool
+
+Descrição:
+Professional Mobile Device Service Tool
+
+1) Preparar ambiente
+--------------------
+Abra o terminal na pasta do projeto e instale as dependências:
+
+    python -m pip install -r requirements.txt
+
+Para usar os comandos instalados do projeto em modo desenvolvimento:
+
+    python -m pip install -e .
+
+2) Rodar em modo desenvolvimento
+--------------------------------
+Comando principal recomendado:
+
+    python -m mabuietool
+
+Ajuda do comando:
+
+    python -m mabuietool --help
+
+Ver versão:
+
+    python -m mabuietool --version
+
+3) Rodar pelos atalhos instalados
+---------------------------------
+Depois de executar `python -m pip install -e .`, use:
+
+    mabuietool
+
+ou:
+
+    mabuietool-gui
+
+4) Interface unificada
+----------------------
+Ao abrir o MabuiETool, use a barra lateral para acessar:
+
+    Dashboard
+    MediaTek
+    Unisoc / SPD
+    Qualcomm
+    Android
+    FRP
+    Diagnostics
+    Backup
+    Tools
+    Settings
+    About
+
+A interface SPD está integrada dentro do MabuiETool:
+
+    Unisoc / SPD -> Full SPD Tool
+
+Ou seja, não é necessário abrir uma janela SPD separada para usar a ferramenta SPD integrada.
+
+5) Ferramenta MTK legada
+------------------------
+A interface MTK antiga ainda foi preservada para compatibilidade.
+Se precisar abrir diretamente:
+
+    python mtk_gui.py
+
+6) Testes rápidos
+-----------------
+Verificar imports e sintaxe:
+
+    python -m py_compile mabuietool/app.py mabuietool/gui/main_window.py
+
+Executar testes:
+
+    python -m pytest
+
+7) Gerar executável Windows
+---------------------------
+No Windows, execute:
+
+    build_windows.bat
+
+O script cria primeiro uma build em modo pasta (--onedir) para facilitar validação dos recursos.
+
+8) Observações
+--------------
+- O MabuiETool abre normalmente sem telefone conectado.
+- Sem dispositivo, o Dashboard deve mostrar estado desconectado/aguardando.
+- Operações USB, COM, MTK e SPD dependem dos drivers corretos do dispositivo.
+- FRP é apenas diagnóstico e recuperação autorizada; não há bypass não autorizado.

@@ -29,6 +29,7 @@ from mtkclient.config.payloads import PathConfig
 from mtkclient.gui.main_gui import Ui_MainWindow
 from mtkclient.gui.themes import DARK_THEME, LIGHT_THEME
 import os
+import subprocess
 import serial.tools.list_ports
 
 
@@ -257,6 +258,10 @@ class MainWindow(QMainWindow):
         self.dark_mode_action.setChecked(is_dark)
         self.dark_mode_action.triggered.connect(self.toggle_dark_mode)
         self.menuView.addAction(self.dark_mode_action)
+        self.menuTools = self.ui.menubar.addMenu("Ferramentas")
+        self.open_spd_action = QAction("Abrir SPD / Unisoc", self)
+        self.open_spd_action.triggered.connect(self.open_spd_gui)
+        self.menuTools.addAction(self.open_spd_action)
         self.ui.partProgress.setHidden(True)
         self.ui.fullProgress.setHidden(True)
         self.ui.readDumpGPTCheckbox.setChecked(True)
@@ -649,6 +654,10 @@ class MainWindow(QMainWindow):
 
         self.ui.spinner_pic.setHidden(True)
 
+    def open_spd_gui(self):
+        spd_entry = os.path.join(os.path.dirname(__file__), "spd_gui", "main.py")
+        subprocess.Popen([sys.executable, spd_entry], cwd=os.path.dirname(__file__))
+
     def toggle_dark_mode(self, checked: bool):
         self.app.setStyleSheet(DARK_THEME if checked else LIGHT_THEME)
 
@@ -681,13 +690,13 @@ def main():
     app.setWindowIcon(icon)
     win.setWindowIcon(icon)
     if sys.platform.startswith('win'):
-        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('MTKTools.Gui')
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('MabuiETool.Gui')
     dpiMultiplier = win.logicalDpiX()
     if dpiMultiplier == 72:
         dpiMultiplier = 2
     else:
         dpiMultiplier = 1
-    win.setWindowTitle("MTKClient - Version 2.1.4")
+    win.setWindowTitle("MabuiETool - MTK v2.1.4")
     win.show()
 
     # Device setup
