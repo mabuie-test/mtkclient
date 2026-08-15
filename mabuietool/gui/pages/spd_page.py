@@ -4,6 +4,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QLabel, QPushButton, QTabWidget, QVBoxLayout, QWidget
 
 from mabuietool.core.logger import LogCategory, app_logger
@@ -11,6 +12,7 @@ from mabuietool.gui.pages.operation_pages import OperationPage
 
 
 class SpdUnifiedPage(QWidget):
+    operation_requested = Signal(str, str)
     """Host the existing SPD GUI inside MabuiETool instead of launching it separately."""
 
     def __init__(self) -> None:
@@ -26,11 +28,14 @@ class SpdUnifiedPage(QWidget):
         layout.addWidget(intro)
 
         self.tabs = QTabWidget()
-        self.tabs.addTab(OperationPage(
+        native_spd = OperationPage(
             "Unisoc / SPD Operations",
             "BSL, FDL, PAC extraction, read, backup, flash and diagnostics through the bundled SPD backend.",
             ["Device Info", "BSL", "FDL", "PAC", "Read", "Backup", "Flash", "Diagnostics"],
-        ), "MabuiETool SPD")
+            "unisoc",
+        )
+        native_spd.operation_requested.connect(self.operation_requested)
+        self.tabs.addTab(native_spd, "MabuiETool SPD")
         self.tabs.addTab(self._build_embedded_spd(), "Full SPD Tool")
         layout.addWidget(self.tabs, 1)
 
