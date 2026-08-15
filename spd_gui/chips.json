@@ -1,0 +1,29 @@
+[
+  {
+    "name": "SC6530 / SC6530C / SC6531",
+    "id_xor": "0x65300000",
+    "id_shift": 17,
+    "fw_addr": "0x30000000",
+    "ram_addr": "0x30000000",
+    "fdl1_addr": "0x40004000",
+    "notes": "fw_addr = macro FW_ADDR do custom_fdl/main.c (_chip != 1) - confirmado no codigo-fonte. NAO e o mesmo endereco documentado no XML do FDL2 oficial (0x34000000) - esse so vale para quem usa o FDL2 do fabricante, nao o FDL1 custom."
+  },
+  {
+    "name": "SC6531E",
+    "id_xor": "0x65620000",
+    "id_shift": 16,
+    "fw_addr": "0x10000000",
+    "ram_addr": "0x10000000",
+    "fdl1_addr": "0x40004000",
+    "notes": "fw_addr = macro FW_ADDR do custom_fdl/main.c (_chip == 1) - confirmado no codigo-fonte. NAO e o mesmo endereco documentado no XML do FDL2 oficial (0x14000000) - esse so vale para quem usa o FDL2 do fabricante, nao o FDL1 custom."
+  },
+  {
+    "name": "UMS9117 (T117/T107/T127 - 4G feature phone)",
+    "id_xor": "0x98180000",
+    "id_shift": 16,
+    "fw_addr": null,
+    "ram_addr": "0x80000000",
+    "fdl1_addr": null,
+    "notes": "Requer FDL1/FDL2 extraidos do firmware oficial (.pac); fw_addr (endereco de gravacao) ainda nao mapeado."
+  }
+]

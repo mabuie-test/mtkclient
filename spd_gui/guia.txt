@@ -1,0 +1,205 @@
+========================================================================
+ MABUIETOOL_SPD - GUIA PASSO A PASSO
+========================================================================
+
+Este guia assume Windows 10/11 e que você já tem (ou vai baixar) o
+arquivo nor_fdl1.bin.
+
+
+------------------------------------------------------------------------
+PASSO 1 - Instalar o Python
+------------------------------------------------------------------------
+1. Baixe o Python 3.10 ou mais novo em https://www.python.org/downloads/
+2. Ao instalar, marque a caixa "Add python.exe to PATH".
+3. Confirme abrindo o "Prompt de Comando" (cmd) e digitando:
+       python --version
+   Deve aparecer algo como "Python 3.12.x".
+
+
+------------------------------------------------------------------------
+PASSO 2 - Baixar/extrair este projeto
+------------------------------------------------------------------------
+Extraia o .zip deste projeto em uma pasta, por exemplo:
+       C:\spd_dump_gui\
+
+A pasta deve conter, entre outros: gui.py, main.py, spd_protocol.py,
+requirements.txt, fdl_files\
+
+
+------------------------------------------------------------------------
+PASSO 3 - Instalar as dependências Python
+------------------------------------------------------------------------
+1. Abra o "Prompt de Comando" na pasta do projeto (Shift+clique direito
+   na pasta -> "Abrir janela do PowerShell/Terminal aqui").
+2. Rode:
+       pip install -r requirements.txt
+
+   Isso instala: PySide6 (interface gráfica), pyusb + libusb (modo USB)
+   e pyserial (modo porta COM).
+
+
+------------------------------------------------------------------------
+PASSO 4 - Escolher o modo de conexão (USB ou porta COM)
+------------------------------------------------------------------------
+Você tem 2 opções, escolha UMA:
+
+  OPÇÃO A - Modo Porta COM (mais simples, SEM Zadig)
+  ----------------------------------------------------
+  Só funciona se o Windows já reconhece o telefone como uma porta COM
+  quando ele é conectado em modo boot (Gerenciador de Dispositivos ->
+  Portas COM e LPT). Isso costuma acontecer se você (ou uma loja de
+  assistência) já instalou algum driver do fabricante Spreadtrum antes
+  (ex.: "Spreadtrum U2S Diag", "Preloader USB VCOM", etc.).
+  Se for esse o seu caso, não precisa instalar mais nada - use o modo
+  "Porta COM" na interface (passo 6).
+
+  OPÇÃO B - Modo USB (via Zadig/WinUSB)
+  ----------------------------------------------------
+  Use esta opção se o telefone aparecer no Gerenciador de Dispositivos
+  como "Dispositivo desconhecido" ou similar (sem driver nenhum), ou se
+  o modo Porta COM não funcionar.
+  1. Baixe o Zadig: https://zadig.akeo.ie/
+  2. Conecte o telefone em modo boot (veja o PASSO 5).
+  3. Abra o Zadig, marque "Options -> List All Devices".
+  4. Ache o dispositivo "1782 4d00" (pode aparecer com outro nome, ex.:
+     "SPRD U2S Diag").
+  5. Selecione o driver "WinUSB" na lista à direita e clique em
+     "Install Driver" (ou "Replace Driver").
+  6. Use o modo "USB" na interface (passo 6).
+
+
+------------------------------------------------------------------------
+PASSO 5 - Colocar o telefone em modo boot
+------------------------------------------------------------------------
+1. Desligue o telefone e, se possível, remova a bateria por uns 5
+   segundos.
+2. Recoloque a bateria (sem ligar o telefone).
+3. Segure uma tecla (varia por modelo: tecla de chamada, "*", "0", "9",
+   ou uma combinação) e, com ela pressionada, conecte o cabo USB no PC.
+4. Alternativamente, use um cabo "boot" com os pinos D+/D- em curto.
+
+Dica: só conecte o telefone DEPOIS de clicar no botão "Aguardar
+telefone e iniciar dump" (ou "...e gravar firmware") na interface - o
+programa fica esperando e detecta a conexão automaticamente.
+
+
+------------------------------------------------------------------------
+PASSO 6 - Rodar o programa
+------------------------------------------------------------------------
+No Prompt de Comando, dentro da pasta do projeto:
+       python main.py
+
+Na janela que abrir:
+1. Em "Conexão com o telefone", escolha o modo (USB ou Porta COM) - veja
+   o PASSO 4. Se for Porta COM, selecione a porta na lista (ou clique em
+   "Atualizar lista" depois de conectar o telefone).
+2. Em "Estágio de inicialização (FDL)", clique em "Procurar..." e
+   selecione o arquivo nor_fdl1.bin (veja fdl_files\LEIA-ME.txt se ainda
+   não tiver um). O endereço padrão 0x40004000 já serve para
+   SC6530/SC6531DA/SC6531E.
+
+
+------------------------------------------------------------------------
+PASSO 7A - Fazer um dump (backup) da flash
+------------------------------------------------------------------------
+1. Na aba "Ler / Fazer dump":
+   - Região: deixe "PS / Flash completa (0x80000003)" (padrão).
+   - Tamanho a ler: 0x400000 (4 MB) é o mais comum em feature phones;
+     ajuste se souber o tamanho exato da flash do seu modelo.
+   - Salvar dump em: escolha onde salvar o arquivo .bin.
+2. Clique em "Aguardar telefone e iniciar dump".
+3. SÓ ENTÃO conecte o telefone em modo boot (PASSO 5).
+4. Acompanhe a barra de progresso e o log. Ao terminar, o arquivo estará
+   salvo no caminho escolhido.
+
+
+------------------------------------------------------------------------
+PASSO 7B - Gravar (flashear) um dump de volta no telefone
+------------------------------------------------------------------------
+ATENÇÃO: só grave um arquivo que seja um dump do MESMO aparelho/modelo
+(ou um firmware oficial compatível). Gravar o arquivo errado pode
+inutilizar o telefone.
+
+1. Na aba "Gravar firmware (flash)":
+   - Arquivo (.bin): selecione o dump que deseja gravar.
+   - Endereço de gravação: deixe em branco para detectar automaticamente
+     pelo chipset (recomendado), ou informe manualmente se souber o
+     endereço correto.
+   - Marque "Entendo os riscos..." para habilitar o botão.
+2. Clique em "Aguardar telefone e gravar firmware" e confirme o aviso.
+3. Conecte o telefone em modo boot (PASSO 5).
+4. Não desconecte o cabo nem desligue o PC até o log mostrar
+   "Gravação concluída".
+
+
+------------------------------------------------------------------------
+PASSO 7C - Utilitários (modo diagnóstico, reiniciar, hard reset)
+------------------------------------------------------------------------
+Na aba "Utilitários":
+   - "Aguardar telefone e entrar em modo diagnóstico": só conecta e
+     identifica o chipset, sem mexer na flash - bom para testar a
+     conexão antes de arriscar um dump/gravação.
+   - "Aguardar telefone e reiniciar": reinicia o aparelho.
+   - "Aguardar telefone e fazer hard reset": apaga os dados de usuário
+     (configurações, contatos, mensagens) sem tocar no firmware. FAÇA UM
+     DUMP DE BACKUP ANTES (Passo 7A) - o comportamento exato dessa
+     função não foi validado em hardware real por esta ferramenta.
+
+
+------------------------------------------------------------------------
+PASSO 7D - Partições (só com FDL2 oficial do fabricante)
+------------------------------------------------------------------------
+Esta aba só funciona se você marcar "Carregar um segundo estágio (FDL2)"
+na seção FDL com o FDL2 REAL do fabricante - o FDL1 custom sozinho não
+suporta isso (vai dar "resposta inesperada", é esperado).
+
+   - "Listar partições": mostra os nomes e tamanhos das partições do
+     telefone.
+   - Escolha uma partição na lista (ou digite o nome), ajuste
+     deslocamento/tamanho se quiser, e "Ler partição" para salvar o
+     conteúdo num arquivo .bin.
+
+
+------------------------------------------------------------------------
+PASSO 7E - Extrair FDL1/FDL2 de um firmware oficial (.pac)
+------------------------------------------------------------------------
+Se você tiver o firmware original do seu aparelho em .pac (baixado do
+site do fabricante), pode extrair o FDL2 oficial dele em vez de montar os
+endereços na mão:
+
+   1. Aba "Extrair FDL2 (.pac)" -> selecione o arquivo .pac -> "Listar
+      arquivos do .pac".
+   2. Escolha o arquivo marcado "[FDL]" na lista (geralmente o FDL2 -
+      pode haver mais de um, o de maior tamanho costuma ser o certo).
+   3. Clique em "Extrair e usar como FDL2" - isso extrai o arquivo E JÁ
+      PREENCHE o caminho e o endereço de carga nos campos da seção FDL
+      (o endereço vem do próprio .pac, não precisa adivinhar), e marca
+      "Carregar um segundo estágio (FDL2)" automaticamente.
+
+Não precisa do telefone conectado para isso - é só leitura do arquivo no
+seu PC.
+
+
+------------------------------------------------------------------------
+PASSO 8 (opcional) - Gerar um .exe standalone
+------------------------------------------------------------------------
+       pip install pyinstaller
+       pyinstaller --noconsole --onefile --name MabuieTool_SPD main.py
+
+O executável fica em dist\MabuieTool_SPD.exe. Copie a pasta fdl_files\ para
+perto dele se for distribuir.
+
+
+------------------------------------------------------------------------
+PROBLEMAS COMUNS
+------------------------------------------------------------------------
+- "Tempo esgotado esperando o telefone conectar": confira se a tecla de
+  boot certa está sendo usada, e se o driver (Zadig ou porta COM) está
+  correto para o dispositivo 1782:4d00.
+- No modo Porta COM, se a porta não aparecer na lista, clique em
+  "Atualizar lista" com o telefone já conectado, ou confira no
+  Gerenciador de Dispositivos qual porta COM foi atribuída.
+- "resposta inesperada" logo após carregar o FDL1: normalmente é o
+  arquivo FDL1 errado para o chipset do seu telefone, ou o endereço de
+  carga (0x40004000) incompatível - confira no README.md e no
+  custom_fdl/README.md do projeto original.
