@@ -3,15 +3,15 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mtkclient"
-description = "Mediatek reverse engineering and flashing tools"
+name = "mabuietool"
+description = "MabuiETool professional mobile device service tool"
 maintainers = [
     {name = "Bjoern Kerler", email = "info@revskills.de"}
 ]
 readme = "README.md"
 license = {file = "LICENSE"}
-version = "2.1.4"
-requires-python = ">= 3.8"
+version = "1.0.0"
+requires-python = ">= 3.11"
 dependencies = [
     "pyusb",
     "pycryptodome",
@@ -28,11 +28,11 @@ classifiers = [
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
   "Operating System :: OS Independent",
 ]
-keywords = ["mediatek", "mtk", "flashing", "reverse engineering", "firmware"]
+keywords = ["mabuietool", "mediatek", "unisoc", "qualcomm", "android", "flashing", "diagnostics", "firmware"]
 
 [project.urls]
-Repository = "https://github.com/bkerler/mtkclient.git"
-Issues = "https://github.com/bkerler/mtkclient/issues"
+Repository = "https://github.com/mabuie/MabuiETool"
+Issues = "https://github.com/mabuie/MabuiETool/issues"
 
 [project.scripts]
 mtk = "mtkclient.mtk:main"
@@ -42,6 +42,8 @@ brom_to_offs = "mtkclient.Tools.brom_to_offs:main"
 
 [project.gui-scripts]
 mtk_gui = "mtkclient.mtk_gui:main"
+mabuietool = "mabuietool.app:main"
+mabuietool-gui = "mabuietool.app:main"
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -58,6 +60,8 @@ include = [
 "Tools/da_parser.py" = "mtkclient/Tools/da_parser.py"
 "mtk.py" = "mtkclient/mtk.py"
 "mtk_gui.py" = "mtkclient/mtk_gui.py"
+"spd_gui" = "spd_gui"
+"mabuietool/resources" = "mabuietool/resources"
 "stage2.py" = "mtkclient/stage2.py"
 "LICENSE" = "LICENSE"
 "README.md" = "README.md"

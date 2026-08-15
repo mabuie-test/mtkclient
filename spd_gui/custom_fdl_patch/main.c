@@ -13,7 +13,7 @@
 #include "efuse.h"
 #endif
 
-/* Extensão não-oficial do MabuieTool_SPD (não faz parte do protocolo
+/* Extensão não-oficial do MabuiETool SPD (não faz parte do protocolo
  * original) - ver read_jedec_id() mais abaixo. */
 #define MABUIE_CMD_READ_JEDEC_ID 0x50
 
@@ -274,7 +274,7 @@ static int erase_flash(uint8_t *pkt) {
 }
 
 /*
- * Extensão não-oficial do MabuieTool_SPD: devolve o JEDEC ID (3 bytes:
+ * Extensão não-oficial do MabuiETool SPD: devolve o JEDEC ID (3 bytes:
  * fabricante + tipo + capacidade) lido via sfc_readid(), o mesmo comando
  * SPI 0x9F que sfc_unlock() já usa internamente - só que agora reportado
  * de volta ao PC em vez de ficar só no firmware. Reaproveita o tipo de

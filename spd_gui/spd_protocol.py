@@ -1261,7 +1261,7 @@ class SpdIO:
         """
         Lê o JEDEC ID da flash SPI-NOR (fabricante + tipo + capacidade).
 
-        Requer um FDL1 compilado com o patch de extensão do MabuieTool_SPD
+        Requer um FDL1 compilado com o patch de extensão do MabuiETool SPD
         (ver custom_fdl_patch/) - o FDL1 "custom" padrão do projeto
         original NÃO tem esse comando e vai responder "comando
         desconhecido"/"comando inválido", nesse caso levantamos SpdError
