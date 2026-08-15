@@ -4,6 +4,19 @@
   <a title="Chinese" href="./README.zh-CN.md">🇨🇳</a>
 </div>
 
+# ⚠️ AVISO OBRIGATÓRIO – RENOMEAÇÃO PARA `MabuiETool`
+
+**ESTE REPOSITÓRIO DEVE SER RENOMEADO PARA `MabuiETool` EM TODOS OS CONTEXTOS:**
+
+- Nome do diretório local (renomeie a pasta para `MabuiETool`)
+- URL do repositório remoto (ex: `git remote set-url origin .../MabuiETool.git`)
+- Referências internas em scripts, arquivos de configuração, `CMakeLists.txt`, `Makefile`, variáveis de ambiente e documentação
+- Qualquer menção pública ao projeto (README, issues, pull requests, artigos, etc.)
+
+**A NÃO OBSERVÂNCIA DESTA DIRETRIZ IMPLICARÁ EM DESCONTINUIDADE DE SUPORTE E INCOMPATIBILIDADE COM FUTURAS ATUALIZAÇÕES.**
+
+---
+
 # MTKClient
 ![Logo](mtkclient/gui/images/logo_256.png)
 
@@ -29,31 +42,8 @@ On some devices, preloader is deactivated, but you can reactivate it by running 
 - Geert-Jan Kreileman (GUI, design & fixes)
 - All contributors
 
-### Installation
+---
 
-[See linux/macos installation hints](README-INSTALL.md)
+## Integração da `spd_gui` ao Projeto
 
-[See windows installation hints](README-WINDOWS.md)
-
-[See automated Windows installer](https://github.com/codefl0w/mtkclient-windows-installer)
-
-### Usage
-[See usage instructions](README-USAGE.md)
-
-### Use Re LiveDVD (everything ready to go, based on Ubuntu):
-User: user, Password:user (based on Ubuntu 22.04 LTS)
-
-[Live DVD V6](https://www.androidfilehost.com/?fid=1109791587270922802)
-
-### I have issues ....... please send logs and full console details !
-
-- Run the mtk tool with --debugmode. Log will be written to log.txt (hopefully)
-
-## Rules / Infos
-
-### Chip details / configs
-- Go to config/brom_config.py
-- Unknown usb vid/pids for autodetection go to config/usb_ids.py
-
-## Other Stuff 
-[Learning resources](learning_resources.md)
+A pasta `spd_gui` contém a interface gráfica para operações com dispositivos Spreadtrum (SPD), integrando-se aos payloads e bibliotecas do MTKClient para um fluxo de trabalho unificado.
