@@ -1,0 +1,18 @@
+Coloque aqui o(s) arquivo(s) FDL1 (ex.: nor_fdl1.bin) usados pela ferramenta.
+
+Este projeto NÃO inclui nenhum binário FDL pronto - você precisa obter um dos
+seguintes, conforme as instruções do projeto original spreadtrum_flash:
+
+1) Baixar um "nor_fdl1.bin" pré-compilado na página de Releases do projeto
+   original (ilyakurdyukov/spreadtrum_flash no GitHub).
+
+2) Compilar você mesmo a partir da pasta custom_fdl/ do projeto original,
+   usando um toolchain ARM (Android NDK ou arm-linux-gnueabi-gcc). Veja o
+   README dentro de custom_fdl/ para os comandos exatos de compilação.
+
+3) Extrair o FDL do firmware original do seu aparelho (arquivo .pac), usando
+   a "SPD Research Tool" (ResearchDownload) para descompactar e localizar os
+   arquivos fdl1-sign.bin / fdl.bin e o .xml com os endereços base.
+
+Endereço de carga padrão usado pelo nor_fdl1.bin "custom" (mesmo binário
+funciona para SC6530, SC6531DA e SC6531E): 0x40004000
